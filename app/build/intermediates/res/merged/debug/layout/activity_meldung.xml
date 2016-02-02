@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingLeft="0dp"
+    android:weightSum="1"
+    android:gravity="left|top"
+    android:background="#faf5f5">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/imageView"
+        android:background="@drawable/feuerwerk2" />
+
+    <TextView
+        android:layout_alignParentLeft="true"
+        android:layout_toLeftOf="@+id/buttonUpvote"
+        android:layout_width="match_parent"
+        android:layout_below="@+id/textViewCategory"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:id="@+id/textViewComment"
+        android:layout_weight="0.66"
+        android:background="#00ffffff"
+        android:textStyle="italic"
+        android:typeface="serif"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginRight="30dp"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp"
+        android:paddingBottom="5dp"
+        android:text="platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter platzhalter" />
+
+    <ImageButton
+        android:src="@drawable/upvote"
+        android:id="@+id/buttonUpvote"
+        android:background="@null"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:alpha="0.9"
+        android:layout_below="@+id/textViewCategory"
+        android:layout_marginRight="10dp"
+        android:layout_alignParentRight="true" />
+
+    <TextView
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/buttonUpvote"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Upvotes"
+        android:layout_marginRight="10dp"
+        android:id="@+id/textViewVotes"  />
+
+    <ImageButton
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/textViewVotes"
+        android:src="@drawable/downvote"
+        android:id="@+id/buttonDownvote"
+        android:background="@null"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:scaleType="fitCenter"
+        android:adjustViewBounds="true"
+        android:layout_marginRight="10dp"
+        android:alpha="0.9" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="UserID"
+        android:id="@+id/textViewUser_id"
+        android:layout_marginBottom="35dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignLeft="@+id/textViewComment"
+        android:layout_alignStart="@+id/textViewComment" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/textViewStatus"
+        android:layout_alignTop="@+id/textViewUser_id"
+        android:layout_centerHorizontal="true"
+        android:text="Status" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Date"
+        android:id="@+id/textViewDate"
+        android:layout_alignTop="@+id/textViewStatus"
+        android:layout_alignRight="@+id/buttonDownvote"
+        android:layout_alignEnd="@+id/buttonDownvote" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="30sp"
+        android:text="Category"
+        android:layout_marginTop="30dp"
+        android:id="@+id/textViewCategory"
+        android:layout_below="@+id/imageView"
+        android:layout_alignLeft="@+id/textViewComment"
+        android:layout_alignStart="@+id/textViewComment" />
+
+</RelativeLayout>
+<!-- From: file:/C:/Users/Martin/AndroidStudioProjects/Prisma2/app/src/main/res/layout/activity_meldung.xml -->

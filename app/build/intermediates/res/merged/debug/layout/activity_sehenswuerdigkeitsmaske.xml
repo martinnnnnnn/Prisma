@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent" android:paddingLeft="0dp" android:orientation="vertical"
+    tools:context="com.example.martin.prisma.Eventsmaske"
+    android:weightSum="1"
+    android:gravity="left|top"
+    android:background="#f1f1ef">
+
+
+    <ImageView
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:id="@+id/imageView"
+        android:background="@drawable/feuerwerk2" />
+
+    <Switch
+        android:layout_width="245dp"
+        android:layout_height="wrap_content"
+        android:id="@+id/switch1"
+        android:layout_gravity="center_horizontal"
+        android:layout_weight="0.22"
+        android:checked="true"
+        android:text="CUSTOMIZE LOCATION"
+        android:clickable="true"
+        android:enabled="true" />
+
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:inputType="textMultiLine"
+        android:ems="10"
+        android:id="@+id/editTextFeedback"
+        android:layout_gravity="center_vertical|left|top"
+        android:layout_weight="0.66"
+        android:layout_margin="30dp"
+        android:background="#ffffff"
+        android:textStyle="italic"
+        android:typeface="serif"
+        android:layout_marginLeft="30dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginBottom="10dp"
+        android:hint="Ihr Feedback"
+        android:gravity="left|top"
+        android:phoneNumber="false"
+        android:paddingLeft="5dp"
+        android:paddingTop="5dp" />
+
+    <Button
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:text="Abschicken"
+        android:id="@+id/buttonAbschicken"
+        android:layout_gravity="center_horizontal"
+        android:background="#83e46f"
+        style="@style/Base.TextAppearance.AppCompat.Large.Inverse" />
+
+</LinearLayout>
+<!-- From: file:/C:/Users/Martin/AndroidStudioProjects/Prisma2/app/src/main/res/layout/activity_sehenswuerdigkeitsmaske.xml -->
