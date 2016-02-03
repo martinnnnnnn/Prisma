@@ -41,19 +41,14 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
 
-        // Add a marker in Sydney and move the camera
-        LatLng moscow = new LatLng(55.751244, 37.618423);
-        mMap.addMarker(new MarkerOptions().position(moscow).title("Marker in Moscow"));
+        // Add Object Markers
+        for(Meldung m:MainActivity.meldungen){
+            LatLng mLatLng = new LatLng(m.getLat(), m.getLng());
+            mMap.addMarker(new MarkerOptions().position(mLatLng).title((new Integer(m.getId()).toString())));
+            builder.include(mLatLng);
+        }
 
-        LatLng aachen = new LatLng(50.775466, 6.081478);
-        mMap.addMarker(new MarkerOptions().position(aachen).title("Marker in Aachen"));
-
-
-        // mMap.animateCamera(CameraUpdateFactory.newLatLng(moscow));
-
-
-        builder.include(moscow);
-        builder.include(aachen);
+        // mMap.animateCamera(CameraUpdateFactory.newLatLng(moscow))
         LatLngBounds bounds = builder.build();
         int padding = 20; // offset from edges of the map in pixels
         CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);

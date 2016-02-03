@@ -20,8 +20,11 @@ import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -149,14 +152,25 @@ public class MainActivity extends AppCompatActivity {
                 b3p1.setVisibility(View.VISIBLE);
                 b4p1.setVisibility(View.VISIBLE);
                 b5p1.setVisibility(View.VISIBLE);
-                b6p1.setVisibility(View.GONE);            }
+                b6p1.setVisibility(View.GONE);
+            }
         });
 
         //get liste of Meldungen via JSON using volley
         Context context = getApplicationContext();
-        Log.d("aa","aa");
+        Log.d("beginne","dasGanzeJSONZeug");
         RequestQueue queue = Volley.newRequestQueue(context);
-        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://www.b19.rwth-aachen.de/download_folder/smart/eintrag", null,
+        final JSONObject params = new JSONObject();
+
+        /*header parameters*/
+        try {
+            params.put("Accept","application/json");
+            params.put("Content-Type","application/json");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest("http://www.b19.rwth-aachen.de/download_folder/smart/eintrag", params,
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
@@ -169,21 +183,45 @@ public class MainActivity extends AppCompatActivity {
                                 Log.d("ausgabe", comment);
 
                                 meldungen.add(new Meldung(meldung.getInt("rating"), meldung.getInt("status"), meldung.getDouble("lat"), meldung.getDouble("lng"),
-                                        meldung.getInt("id"), meldung.getString("comment"), meldung.getInt("category"), meldung.getInt("user_id"), new Timestamp(meldung.getLong("date"))));
+                                        meldung.getInt("id"), meldung.getString("comment"), meldung.getInt("category"), meldung.getInt("user_id"), new Timestamp(System.currentTimeMillis())));
                                 Log.d("Comment", meldungen.get(0).getComment());
+
                             }
+                            Log.d("howmany", "soviele geholt: "+meldungen.size());
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                    error.printStackTrace();
 
+                        Log.d("leider fail!","failez");
                     }
-                });
+                }){
+            @Override
+            public Map<String, String> getHeaders()
+            {
+                Map<String, String> headers = new HashMap<String, String>();
+                headers.put("Content-Type", "application/json");
+                headers.put("Accept", "application/json");
+                return headers;
+            }
+
+            @Override
+            public byte[] getBody() {
+
+                try {
+                    Log.i("json", params.toString());
+                    return params.toString().getBytes("UTF-8");
+                } catch (UnsupportedEncodingException e) {
+                    e.printStackTrace();
+                }
+                return null;
+            }
+        };
 
         queue.add(jsonObjectRequest);
     }

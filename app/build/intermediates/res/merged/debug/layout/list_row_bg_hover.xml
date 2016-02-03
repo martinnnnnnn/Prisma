@@ -8,4 +8,4 @@
         android:endColor="@color/list_row_hover_end_color"
         android:startColor="@color/list_row_hover_start_color" />
 
-</LinearLayout><!-- From: file:/C:/Users/Martin/AndroidStudioProjects/Prisma2/app/src/main/res/layout/list_row_bg_hover.xml -->
+</LinearLayout><!-- From: file:/C:/Users/Alexey/AndroidStudioProjects/Prisma2/app/src/main/res/layout/list_row_bg_hover.xml -->

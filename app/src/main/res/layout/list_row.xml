@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dip" >
+
+    <LinearLayout android:id="@+id/thumbnail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="3dip"
+        android:layout_alignParentLeft="true"
+        android:layout_marginRight="5dip">
+
+        <ImageView
+            android:id="@+id/list_image"
+            android:layout_width="50dip"
+            android:layout_height="50dip"
+            android:src="@drawable/festival2"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textViewListText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="Comment"
+        android:textColor="#040404"
+        android:textSize="15dip"
+        android:layout_centerVertical="true"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textViewDistance"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/thumbnail"
+        android:text="Distance" />
+
+    <TextView
+        android:id="@+id/textViewListDate"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignTop="@id/textViewListText"
+        android:gravity="right"
+        android:text="5:45"
+        android:layout_marginRight="5dip"
+        android:textSize="10dip"
+        android:textColor="#10bcc9"
+        android:textStyle="bold"/>
+
+    <TextView
+        android:id="@+id/textViewListVotes"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="right"
+        android:text="Votes"
+        android:textSize="10dip"
+        android:textColor="#10bcc9"
+        android:textStyle="bold"
+        android:layout_centerVertical="true"
+        android:layout_toLeftOf="@+id/listArrow"
+        android:layout_toStartOf="@+id/listArrow" />
+
+    <ImageView
+        android:id="@+id/listArrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:src="@drawable/arrow"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"/>
+</RelativeLayout>
+
+<!--<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    android:shape="rectangle" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <gradient
+        android:startColor="@color/list_row_start_color"
+        android:endColor="@color/list_row_end_color"
+        android:angle="270" />
+</shape>-->
