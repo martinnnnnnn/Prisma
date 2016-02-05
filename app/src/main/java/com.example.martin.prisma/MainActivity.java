@@ -24,7 +24,10 @@ import org.json.JSONObject;
 
 import java.io.UnsupportedEncodingException;
 import java.sql.Timestamp;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -192,14 +195,17 @@ public class MainActivity extends AppCompatActivity {
                                 JSONObject meldung = jsonArray.getJSONObject(i);
                                 String comment = meldung.getString("comment");
                                 Log.d("ausgabe", comment);
+                                Date datum = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ssZ").parse(meldung.getString("date"));
 
                                 meldungen.add(new Meldung(meldung.getInt("rating"), meldung.getInt("status"), meldung.getDouble("lat"), meldung.getDouble("lng"),
-                                        meldung.getInt("id"), meldung.getString("comment"), meldung.getInt("category"), meldung.getInt("user_id"), new Timestamp(System.currentTimeMillis())));
+                                                meldung.getInt("id"), meldung.getString("comment"), meldung.getInt("category"), meldung.getInt("user_id"), datum));
                                 Log.d("Comment", meldungen.get(0).getComment());
 
                             }
                             Log.d("howmany", "soviele geholt: "+meldungen.size());
                         } catch (JSONException e) {
+                            e.printStackTrace();
+                        } catch (ParseException e) {
                             e.printStackTrace();
                         }
                     }

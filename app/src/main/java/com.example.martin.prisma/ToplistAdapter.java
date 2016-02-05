@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 
 /**
@@ -55,8 +56,8 @@ public class ToplistAdapter extends BaseAdapter{
         //TODO Daten, Timestamp, Distance (Location in die Main)
         holder.categoryView.setImageResource(R.drawable.festival2);
         holder.listText.setText(listData.get(position).getComment());
-        //String date = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(listData.get(position).getDate());
-        holder.date.setText("date");
+        String date = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss").format(listData.get(position).getDate());
+        holder.date.setText(date);
         Integer votes = listData.get(position).getRating();
         holder.votes.setText(votes.toString());
         Location targetLocation = new Location("");
