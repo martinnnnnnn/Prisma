@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -78,7 +79,17 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
             }
         });
 
+        final ImageButton mapImageButton = (ImageButton) this.findViewById(R.id.mapImageButton);
+        mapImageButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Toplist.this, MapsActivity.class));
+            }
+        });
+
     }
+
+
 
 
     private void displayLocation() {

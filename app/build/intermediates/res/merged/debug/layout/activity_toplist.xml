@@ -13,5 +13,13 @@
         android:id="@android:id/list"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true" />
+
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/mapImageButton"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
 </RelativeLayout>
-<!-- From: file:/C:/Users/Alexey/AndroidStudioProjects/Prisma2/app/src/main/res/layout/activity_toplist.xml -->
+<!-- From: file:/C:/Users/Martin/AndroidStudioProjects/Prisma2/app/src/main/res/layout/activity_toplist.xml -->

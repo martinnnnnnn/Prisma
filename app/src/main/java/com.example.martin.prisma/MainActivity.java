@@ -2,8 +2,10 @@ package com.example.martin.prisma;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
@@ -25,6 +27,7 @@ import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Set;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -41,6 +44,14 @@ public class MainActivity extends AppCompatActivity {
         if (!isOnline()){
             KeineInternetverbindung d = new KeineInternetverbindung();
             d.show(getFragmentManager(), "dialog");
+        }
+
+        if (getSharedPreferences("user_id", 0) == null){
+            int user_id=77; //TODO post request
+            SharedPreferences sp = getPreferences(0);
+            SharedPreferences.Editor e = sp.edit();
+            e.putInt("user_id", user_id);
+            e.commit();
         }
 
 
