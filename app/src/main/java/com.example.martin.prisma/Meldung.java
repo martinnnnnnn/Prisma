@@ -3,6 +3,7 @@ package com.example.martin.prisma;
 import android.os.Bundle;
 
 import java.sql.Timestamp;
+import java.util.Date;
 
 /**
  * Created by Martin on 24.01.2016.
@@ -18,7 +19,7 @@ public class Meldung {
     private String comment = "comment";
     private int category = 0;
     private int user_id = 0;
-    private Timestamp date;
+    private Date date;
 
     @Override
     public String toString(){
@@ -29,7 +30,7 @@ public class Meldung {
     public Meldung(){
 
     }
-    public Meldung(int rating,int status, double lat, double lng, int id, String comment, int category, int user_id, Timestamp date){
+    public Meldung(int rating,int status, double lat, double lng, int id, String comment, int category, int user_id, Date date){
         this.rating = rating;
         this.status = status;
         this.lat = lat;
@@ -78,7 +79,7 @@ public class Meldung {
     public int getUser_id(){
         return user_id;
     }
-    public Timestamp getDate(){
+    public Date getDate(){
         return date;
     }
 
