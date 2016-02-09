@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
@@ -77,7 +78,14 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
                 startActivity(intent);
             }
         });
-
+//        final FloatingActionButton addNewButton = (FloatingActionButton) this.findViewById(R.id.addNewButton);
+//
+//        addNewButton.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                setContentView(R.layout.activity_main);
+//            }
+//        });
     }
 
 
@@ -88,8 +96,12 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
             // Building the GoogleApi client
             buildGoogleApiClient();
         }
-        mLastLocation = LocationServices.FusedLocationApi
-                .getLastLocation(mGoogleApiClient);
+        try {
+            mLastLocation = LocationServices.FusedLocationApi
+                    .getLastLocation(mGoogleApiClient);
+        }catch(SecurityException e){
+            e.printStackTrace();
+        }
 
         if (mLastLocation != null) {
             double latitude = mLastLocation.getLatitude();

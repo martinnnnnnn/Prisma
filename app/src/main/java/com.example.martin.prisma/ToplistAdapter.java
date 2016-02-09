@@ -63,7 +63,7 @@ public class ToplistAdapter extends BaseAdapter{
         Location targetLocation = new Location("");
         targetLocation.setLatitude(listData.get(position).getLat());
         targetLocation.setLongitude(listData.get(position).getLng());
-        //holder.distance.setText((new Float(Toplist.mLastLocation.distanceTo(targetLocation))).toString());
+        holder.distance.setText((new Float(Toplist.mLastLocation.distanceTo(targetLocation))).toString());
 
         return convertView;
     }

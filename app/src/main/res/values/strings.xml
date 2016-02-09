@@ -93,4 +93,6 @@
         "when a user tries to pick up one of cards.\n\n"
     </string>
     <string name="title_activity_meldung">MeldungActivity</string>
+    <string name="title_activity_about">About</string>
+    <string name="title_activity_main23333">Main2Activity3333</string>
 </resources>
