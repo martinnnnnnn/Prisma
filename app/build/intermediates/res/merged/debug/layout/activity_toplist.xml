@@ -28,4 +28,4 @@
         android:adjustViewBounds="true"
         android:clickable="true" />
 </android.support.v4.widget.SwipeRefreshLayout>
-<!-- From: file:/C:/Users/Alexey/AndroidStudioProjects/Prisma2/app/src/main/res/layout/activity_toplist.xml -->
+<!-- From: file:/C:/Users/Martin/AndroidStudioProjects/Prisma2/app/src/main/res/layout/activity_toplist.xml -->

@@ -196,7 +196,6 @@
                     android:layout_height="fill_parent"
                     android:text="Settings"
                     android:id="@+id/button6p1"
-                    android:background="@drawable/settings_with_corner"
                     android:cropToPadding="false"
                     android:clickable="true" />
 
