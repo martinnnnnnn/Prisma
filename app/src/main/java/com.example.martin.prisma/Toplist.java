@@ -90,7 +90,6 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
 
         //Click Listener for List Elements
 
-
         adapter  = new ToplistAdapter(this, MainActivity.meldungen);
         final ListView list = getListView();
         list.setAdapter(adapter);

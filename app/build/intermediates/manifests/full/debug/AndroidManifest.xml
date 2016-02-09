@@ -56,6 +56,11 @@
         <activity
             android:name="com.example.martin.prisma.Toplist"
             android:label="@string/title_activity_toplist" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name="com.example.martin.prisma.Eventsmaske" />
         <!--
@@ -75,11 +80,6 @@
             android:name="com.example.martin.prisma.DummyDrawer"
             android:label="@string/title_activity_dummy_drawer"
             android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <!-- Include the AdActivity and InAppPurchaseActivity configChanges and themes. -->
         <activity
