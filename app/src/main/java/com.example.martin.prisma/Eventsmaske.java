@@ -51,8 +51,6 @@ public class Eventsmaske extends AppCompatActivity  implements GoogleApiClient.C
         setContentView(R.layout.activity_eventsmaske);
         buildGoogleApiClient();
         createLocationRequest();
-
-
         Button buttonAbschicken = (Button) findViewById(R.id.buttonAbschicken);
         buttonAbschicken.setOnClickListener(new View.OnClickListener() {
             @Override

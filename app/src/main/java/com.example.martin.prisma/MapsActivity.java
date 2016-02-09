@@ -1,5 +1,7 @@
 package com.example.martin.prisma;
 
+import android.Manifest;
+import android.content.pm.PackageManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -40,20 +42,29 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        if(MainActivity.meldungen.size()>0){
+            // Add Object Markers
+            for (Meldung m : MainActivity.meldungen) {
+                LatLng mLatLng = new LatLng(m.getLat(), m.getLng());
+                mMap.addMarker(new MarkerOptions().position(mLatLng).title((new Integer(m.getId()).toString())));
+                builder.include(mLatLng);
+            }
 
-        // Add Object Markers
-        for(Meldung m:MainActivity.meldungen){
-            LatLng mLatLng = new LatLng(m.getLat(), m.getLng());
-            mMap.addMarker(new MarkerOptions().position(mLatLng).title((new Integer(m.getId()).toString())));
-            builder.include(mLatLng);
+            // mMap.animateCamera(CameraUpdateFactory.newLatLng(moscow))
+            LatLngBounds bounds = builder.build();
+            int padding = 20; // offset from edges of the map in pixels
+            CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
+            googleMap.animateCamera(cu);
+
         }
 
-        // mMap.animateCamera(CameraUpdateFactory.newLatLng(moscow))
-        LatLngBounds bounds = builder.build();
-        int padding = 20; // offset from edges of the map in pixels
-        CameraUpdate cu = CameraUpdateFactory.newLatLngBounds(bounds, padding);
-        googleMap.animateCamera(cu);
 
-        mMap.setMyLocationEnabled(true);
+  try {
+      mMap.setMyLocationEnabled(true);
+  }catch(SecurityException e){
+      e.printStackTrace();
+
+  }
+
     }
 }

@@ -1,18 +1,23 @@
 package com.example.martin.prisma;
 
 import android.app.ListActivity;
+import android.content.Context;
 import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.support.design.widget.FloatingActionButton;
+import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ImageButton;
 import android.widget.ListView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.gms.appindexing.Action;
 import com.google.android.gms.appindexing.AppIndex;
 import com.google.android.gms.common.ConnectionResult;
@@ -23,6 +28,12 @@ import com.google.android.gms.common.api.GoogleApiClient.OnConnectionFailedListe
 import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.location.LocationListener;
+
+import org.json.JSONException;
+import org.json.JSONObject;
+
+
+import static com.example.martin.prisma.MainActivity.refreshMeldungen;
 
 public class Toplist extends ListActivity implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 
@@ -61,7 +72,24 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
         // See https://g.co/AppIndexing/AndroidStudio for more information.
         client = new GoogleApiClient.Builder(this).addApi(AppIndex.API).build();
 
+
+        /*get data*/
+        final JSONObject params = new JSONObject();
+
+        /*header parameters*/
+        try {
+            params.put("Accept","application/json");
+            params.put("Content-Type","application/json");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        Context context = getApplicationContext();
+        RequestQueue queue = Volley.newRequestQueue(context);
+        JsonObjectRequest jsonObjectRequest = refreshMeldungen(params);
+        queue.add(jsonObjectRequest);
+
         //Click Listener for List Elements
+
 
         adapter  = new ToplistAdapter(this, MainActivity.meldungen);
         final ListView list = getListView();
@@ -78,18 +106,35 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
                 startActivity(intent);
             }
         });
+       /*display error if no meldungen could be fetched*/
+        errorNoMeldungen();
 
-        final ImageButton mapImageButton = (ImageButton) this.findViewById(R.id.mapImageButton);
-        mapImageButton.setOnClickListener(new View.OnClickListener() {
+        /*pull to refresh*/
+final SwipeRefreshLayout pullToRefresh = (SwipeRefreshLayout) findViewById(R.id.pullToRefresh);
+        pullToRefresh.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
-            public void onClick(View v) {
-                startActivity(new Intent(Toplist.this, MapsActivity.class));
+            public void onRefresh() {
+                // TODO Auto-generated method stub
+
+                Log.d("refreshez","refreshez");
+                pullToRefresh.setRefreshing(false);
+                final JSONObject params = new JSONObject();
+
+        /*header parameters*/
+                try {
+                    params.put("Accept","application/json");
+                    params.put("Content-Type","application/json");
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+
+                      refreshMeldungen(params);
+                /*display error if no data could be fetched*/
+                     errorNoMeldungen();
+                adapter.notifyDataSetChanged();
             }
         });
-
     }
-
-
 
 
     private void displayLocation() {
@@ -99,8 +144,12 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
             // Building the GoogleApi client
             buildGoogleApiClient();
         }
-        mLastLocation = LocationServices.FusedLocationApi
-                .getLastLocation(mGoogleApiClient);
+        try {
+            mLastLocation = LocationServices.FusedLocationApi
+                    .getLastLocation(mGoogleApiClient);
+        }catch(SecurityException e){
+            e.printStackTrace();
+        }
 
         if (mLastLocation != null) {
             double latitude = mLastLocation.getLatitude();
@@ -236,4 +285,15 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
         AppIndex.AppIndexApi.end(client, viewAction);
         client.disconnect();
     }
-}
+
+    public void errorNoMeldungen(){
+        if(MainActivity.meldungen.size()==0){
+            Context context = getApplicationContext();
+            CharSequence text = "Data unavailable, please check your internet connection!";
+            int duration = Toast.LENGTH_LONG;
+
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
+    }
+    }

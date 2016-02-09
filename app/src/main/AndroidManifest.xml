@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.martin.prisma">
+    package="com.example.martin.prisma" >
 
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
@@ -17,7 +17,7 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+        android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -34,16 +34,14 @@
         <activity
             android:name=".MapsActivity"
             android:label="@string/title_activity_maps" />
-        <activity android:name=".MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+        <activity
+            android:name=".MainActivity"
+            android:screenOrientation="portrait" >
         </activity>
         <activity
             android:name=".Toplist"
-            android:label="@string/title_activity_toplist" />
+            android:label="@string/title_activity_toplist" >
+            </activity>
         <activity android:name=".Eventsmaske" />
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -53,7 +51,22 @@
             android:name="com.google.android.gms.version"
             android:value="@integer/google_play_services_version" />
 
-        <activity android:name=".MeldungActivity"></activity>
+        <activity android:name=".MeldungActivity" />
+        <activity android:name=".About" >
+        </activity>
+        <activity android:name=".Profil" >
+        </activity>
+        <activity
+            android:name=".DummyDrawer"
+            android:label="@string/title_activity_dummy_drawer"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
+        </activity>
     </application>
 
 </manifest>
