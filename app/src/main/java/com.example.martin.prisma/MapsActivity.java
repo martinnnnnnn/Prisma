@@ -1,7 +1,5 @@
 package com.example.martin.prisma;
 
-import android.Manifest;
-import android.content.pm.PackageManager;
 import android.support.v4.app.FragmentActivity;
 import android.os.Bundle;
 
@@ -42,9 +40,9 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
         LatLngBounds.Builder builder = new LatLngBounds.Builder();
-        if(MainActivity.meldungen.size()>0){
+        if(MeldungenArray.meldungen.size()>0){
             // Add Object Markers
-            for (Meldung m : MainActivity.meldungen) {
+            for (Meldung m : MeldungenArray.meldungen) {
                 LatLng mLatLng = new LatLng(m.getLat(), m.getLng());
                 mMap.addMarker(new MarkerOptions().position(mLatLng).title((new Integer(m.getId()).toString())));
                 builder.include(mLatLng);

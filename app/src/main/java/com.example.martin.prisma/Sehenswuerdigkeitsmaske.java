@@ -42,7 +42,7 @@ public class Sehenswuerdigkeitsmaske extends AppCompatActivity  implements Googl
     private Location mLastLocation;
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = MeldungAuswahlActivity.class.getSimpleName();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

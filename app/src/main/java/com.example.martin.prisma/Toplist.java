@@ -6,7 +6,6 @@ import android.content.Intent;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.util.Log;
 import android.view.View;
@@ -33,7 +32,6 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 
-import static com.example.martin.prisma.MainActivity.refreshMeldungen;
 
 public class Toplist extends ListActivity implements ConnectionCallbacks, OnConnectionFailedListener, LocationListener {
 
@@ -49,7 +47,7 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
     public static Location mLastLocation;
     // Google client to interact with Google API
     private GoogleApiClient mGoogleApiClient;
-    private static final String TAG = MainActivity.class.getSimpleName();
+    private static final String TAG = MeldungAuswahlActivity.class.getSimpleName();
 
     //RECORDING HOW MANY TIMES THE BUTTON HAS BEEN CLICKED
     int clickCounter = 0;
@@ -74,23 +72,16 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
 
 
         /*get data*/
-        final JSONObject params = new JSONObject();
 
-        /*header parameters*/
-        try {
-            params.put("Accept","application/json");
-            params.put("Content-Type","application/json");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
         Context context = getApplicationContext();
         RequestQueue queue = Volley.newRequestQueue(context);
-        JsonObjectRequest jsonObjectRequest = refreshMeldungen(params);
+        JsonObjectRequest jsonObjectRequest = MeldungenArray.refreshMeldungen();
         queue.add(jsonObjectRequest);
 
+        Log.d("anzahl meldungen:",""+ MeldungenArray.meldungen.size());
         //Click Listener for List Elements
 
-        adapter  = new ToplistAdapter(this, MainActivity.meldungen);
+        adapter  = new ToplistAdapter(this, MeldungenArray.meldungen);
         final ListView list = getListView();
         list.setAdapter(adapter);
 
@@ -99,7 +90,7 @@ public class Toplist extends ListActivity implements ConnectionCallbacks, OnConn
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
                 Meldung item = (Meldung) adapter.getItem(position);
-                Intent intent = new Intent(Toplist.this, MeldungActivity.class);
+                Intent intent = new Intent(Toplist.this, MeldungToplistActivity.class);
                 intent.putExtras(item.getBundle());
 
                 startActivity(intent);
@@ -127,7 +118,7 @@ final SwipeRefreshLayout pullToRefresh = (SwipeRefreshLayout) findViewById(R.id.
                     e.printStackTrace();
                 }
 
-                      refreshMeldungen(params);
+                MeldungenArray.refreshMeldungen();
                 /*display error if no data could be fetched*/
                      errorNoMeldungen();
                 adapter.notifyDataSetChanged();
@@ -286,7 +277,7 @@ final SwipeRefreshLayout pullToRefresh = (SwipeRefreshLayout) findViewById(R.id.
     }
 
     public void errorNoMeldungen(){
-        if(MainActivity.meldungen.size()==0){
+        if(MeldungenArray.meldungen.size()==0){
             Context context = getApplicationContext();
             CharSequence text = "Data unavailable, please check your internet connection!";
             int duration = Toast.LENGTH_LONG;
