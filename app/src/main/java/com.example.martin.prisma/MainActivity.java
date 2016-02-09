@@ -33,7 +33,7 @@ import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
     public static ArrayList<Meldung> meldungen = new ArrayList<Meldung>();
-    private static String url ="http://www.b19.rwth-aachen.de/download_folder/smarter/meldung";
+    private static String url ="http://www.b19.rwth-aachen.de/download_folder/smart/eintrag";
     //TODO Methode zum updaten des meldungen arrays?
 
     @Override
@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity {
 
         //get liste of Meldungen via JSON using volley
         Context context = getApplicationContext();
-        Log.d("beginne","dasGanzeJSONZeug");
         final JSONObject params = new JSONObject();
 
         /*header parameters*/
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
         NetworkInfo netInfo = cm.getActiveNetworkInfo();
         return netInfo != null && netInfo.isConnectedOrConnecting();
     }
-    public JsonObjectRequest refreshMeldungen(final JSONObject params){
+    public static JsonObjectRequest refreshMeldungen(final JSONObject params){
  /*url is static in class*/
         JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(url, params,
                 new Response.Listener<JSONObject>() {
@@ -122,6 +121,7 @@ public class MainActivity extends AppCompatActivity {
                         error.printStackTrace();
 
                         Log.d("leider fail!","failez");
+
                     }
                 }){
             @Override

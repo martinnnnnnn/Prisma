@@ -37,16 +37,11 @@
         <activity
             android:name=".MainActivity"
             android:screenOrientation="portrait" >
->
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".Toplist"
-            android:label="@string/title_activity_toplist" />
+            android:label="@string/title_activity_toplist" >
+            </activity>
         <activity android:name=".Eventsmaske" />
         <!--
              ATTENTION: This was auto-generated to add Google Play services to your project for
@@ -60,6 +55,17 @@
         <activity android:name=".About" >
         </activity>
         <activity android:name=".Profil" >
+        </activity>
+        <activity
+            android:name=".DummyDrawer"
+            android:label="@string/title_activity_dummy_drawer"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
     </application>
 
